@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
+    private int count;
     public float speed = 0;
     private Rigidbody rb;
     private float movementX;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        count = 0;
     }
 
     void OnMove(InputValue movementValue)
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Points"))
         {
             other.gameObject.SetActive(false);
+            count = count + 1;
         }
     }
 }
