@@ -4,9 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    public TextMeshProUGUI countText;
     private int count;
     public float speed = 0;
     private Rigidbody rb;
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
+        SetCountText();
     }
 
     void OnMove(InputValue movementValue)
@@ -25,9 +28,9 @@ public class PlayerController : MonoBehaviour
         movementX = movementVector.x;
         movementY = movementVector.y;
     }
-    void Update()
+    void SetCountText()
     {
-        
+        countText.text = "Count: " + count.ToString();
     }
 
     private void FixedUpdate()
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             count = count + 1;
+            SetCountText();
         }
     }
 }
